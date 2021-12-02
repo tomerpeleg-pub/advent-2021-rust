@@ -6,7 +6,6 @@ struct Position {
 }
 
 fn get_input() -> String {
-    // --snip--
     println!("In file {}", "inputs/day2/input");
 
     let contents =
@@ -43,6 +42,19 @@ fn p1(directions: &Vec<Position>) -> Position {
     position
 }
 
+fn p2(directions: &Vec<Position>) -> Position {
+    let mut position = Position { x: 0, y: 0 };
+    let mut aim = 0;
+
+    for dir in directions {
+        aim += dir.y;
+        position.x += dir.x;
+        position.y += aim * dir.x;
+    }
+
+    position
+}
+
 pub fn init() {
     println!("Day 2 -----------------");
     let input: Vec<Position> = get_input()
@@ -51,5 +63,15 @@ pub fn init() {
         .collect();
     println!("Found {} instructions", input.len());
     let p1_result = p1(&input);
-    println!("P1: hor: {}, y: {}", p1_result.x, p1_result.y);
+    let p1_total = p1_result.x * p1_result.y;
+    println!(
+        "P1: x: {}, y: {}, tot: {}",
+        p1_result.x, p1_result.y, p1_total
+    );
+    let p2_result = p2(&input);
+    let p2_total = p2_result.x * p2_result.y;
+    println!(
+        "P2: x: {}, y: {}, tot: {}",
+        p2_result.x, p2_result.y, p2_total
+    );
 }
