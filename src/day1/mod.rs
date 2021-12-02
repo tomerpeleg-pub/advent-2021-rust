@@ -7,7 +7,7 @@ fn get_input() -> String {
     let contents =
         fs::read_to_string("inputs/day1/p1").expect("Something went wrong reading the file");
 
-    return contents;
+    contents
 }
 
 fn parse_depths(inputs: String) -> Vec<i32> {
@@ -15,7 +15,8 @@ fn parse_depths(inputs: String) -> Vec<i32> {
         .lines()
         .map(|v| v.to_string().parse::<i32>().unwrap())
         .collect();
-    return depths;
+
+    depths
 }
 
 fn p1(depths: &Vec<i32>) -> u32 {
